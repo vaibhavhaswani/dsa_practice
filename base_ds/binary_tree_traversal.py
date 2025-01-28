@@ -141,7 +141,26 @@ class BT:
         
         #if levelorder list is given
         elif 'levelorder' in list(traversal.keys()):
-            pass
+            lvl=traversal['levelorder']
+            if not lvl or lvl[0] is None:
+                return None
+            root_data=lvl[0]
+            root=Node(root_data)
+            q=[root]
+            i=1
+            while i<len(lvl):
+                current=q.pop(0)                           # node 1 , node1.left (similarly left and right nodes of node1.left will be created then node1.right)
+                if i<len(lvl) or lvl[i] is not None:       
+                    current.left=Node(lvl[i])               # node1.left = i[1]=2
+                    q.append(current.left)                  # [node1.left]
+                i+=1                                        # i=2
+                if i<len(lvl) or lvl[i] is not None:
+                    current.right=Node(lvl[i])             # node1.right = i[2] =3 
+                    q.append(current.right)               # [node1.left,node1.right]
+                i+=1                                     # i = 3
+            return root
+
+
         return None
 
     
@@ -168,7 +187,8 @@ if __name__=="__main__":
     print(f"Tree height: {bt.getheight(bt.root)}")
 
     # tree_dict={"inorder":[4,2,5,1,6,3,7],"preorder":[1,2,4,5,3,6,7]}
-    tree_dict={"inorder":[4,2,5,1,6,3,7],"postorder":[4,5,2,6,7,3,1]}
+    # tree_dict={"inorder":[4,2,5,1,6,3,7],"postorder":[4,5,2,6,7,3,1]}
+    tree_dict={"levelorder":[1,2,3,4,5,6,7]}
 
     root=BT.buildtree(traversal=tree_dict)
     tree=BT()
