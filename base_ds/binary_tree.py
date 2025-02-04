@@ -1,5 +1,6 @@
 from collections import deque
 
+## Binary Tree Methods
 
 class Node:
     def __init__(self,data):
@@ -99,6 +100,8 @@ class BT:
     # tree constructor based on given data and selected traversal
     @classmethod
     def buildtree(self,traversal:dict):
+        #create trees based on different traversal patterns
+
         #if inorder and preorder list are given
         if 'inorder' in list(traversal.keys()) and 'preorder' in list(traversal.keys()):
             pre=traversal['preorder'] # preorder traversal , root in the beginning
