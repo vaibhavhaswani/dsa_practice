@@ -16,8 +16,11 @@ class MinHeap:
         """returns the right child index of the node"""
         return 2*i+2
     
-    def print(self):
-        print("Heap: "," - ".join([str(v) for v in self.heap]))
+    def print(self,arr=None):
+        if not arr:
+            print("Heap: "," - ".join([str(v) for v in self.heap]))
+        else:
+            print("Heap: "," - ".join([str(v) for v in arr]))
     
     
     def heapify_up(self,index): #or bubble up
@@ -45,9 +48,9 @@ class MinHeap:
         left=self.leftchild(index)
         right=self.rightchild(index)
         
-        if left<len(self.heap) and self.heap[left]<self.heap[index]:
+        if left<len(self.heap) and self.heap[left]<self.heap[smallest]:
             smallest=left
-        if right<len(self.heap) and self.heap[right]<self.heap[index]:
+        if right<len(self.heap) and self.heap[right]<self.heap[smallest]:
             smallest=right
         if smallest!=index:
             self.heap[index],self.heap[smallest]=self.heap[smallest],self.heap[index]
@@ -76,6 +79,13 @@ class MinHeap:
         self.heapify_down(0) # resets the heap
         
         return root
+    
+    def build_heap(self,arr):
+        self.heap=arr[:]
+        idx=self.parent(len(arr)-1)
+        for i in range(idx,-1,-1):
+            print(i)
+            self.heapify_down(i)
         
         
 if __name__=="__main__":
@@ -87,4 +97,8 @@ if __name__=="__main__":
     heap.print()
     print("Extracted:",heap.extract_min())
     heap.print()
+    unsrt_arr=[7,2,9,0,1,3]
+    heap2=MinHeap()
+    heap2.build_heap(unsrt_arr)
+    heap2.print()
     
