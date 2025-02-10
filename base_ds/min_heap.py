@@ -84,7 +84,6 @@ class MinHeap:
         self.heap=arr[:]
         idx=self.parent(len(arr)-1)
         for i in range(idx,-1,-1):
-            print(i)
             self.heapify_down(i)
         
         
