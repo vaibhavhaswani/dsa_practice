@@ -7,6 +7,7 @@ class MaxHeap:
     
     def leftchild(self,i):
         return 2*i+1
+    
     def rightchild(self,i):
         return 2*i+2
     
