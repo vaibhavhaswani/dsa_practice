@@ -39,10 +39,7 @@ class Graph:
                 print(node,end=" ")
                 visited.add(node)
                 queue.extend(self.graph.get(node,[]))
-
-        
-        
-        
+    
 
 
 if __name__ == "__main__":
